@@ -1,0 +1,476 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Surprise ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+    background: #fff5fa;
+    overflow-x: hidden;
+    color: #713b72;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 25px;
+    background: #fa3986;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+button:hover {
+    transform: scale(1.08);
+    background: #d91c70;
+}
+
+.screen {
+    display: none;
+    min-height: 100vh;
+    width: 100%;
+    padding: 30px 15px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.screen.active {
+    display: flex;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #e83b8a;
+}
+
+p {
+    line-height: 1.8;
+}
+
+/* COUNTDOWN */
+
+#intro {
+    background: repeating-linear-gradient(
+        90deg,
+        #6d001b,
+        #9e0738 20px,
+        #d11b50 40px,
+        #68001d 60px
+    );
+    color: gold;
+}
+
+.clock {
+    font-size: 75px;
+    margin: 20px;
+    text-shadow: 0 0 20px gold;
+}
+
+#countdown {
+    font-size: 35px;
+    font-weight: bold;
+    border: 2px solid gold;
+    padding: 15px 35px;
+    display: inline-block;
+}
+
+/* PASSWORD */
+
+#password {
+    background: linear-gradient(120deg,#f9e4ef,#a58bce);
+}
+
+.pin-box {
+    background: #fff;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px #8a4b8b30;
+    max-width: 350px;
+    width: 100%;
+}
+
+#pin {
+    padding: 12px;
+    width: 100%;
+    border: 2px solid #e8b5dc;
+    border-radius: 12px;
+    margin: 20px 0;
+    text-align: center;
+    font-size: 20px;
+}
+
+/* BIRTHDAY MESSAGE */
+
+#birthday {
+    background: linear-gradient(120deg,#d5b4f5,#f8d7e8);
+}
+
+.birthday-card {
+    background: #fff;
+    border-radius: 20px;
+    max-width: 750px;
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    box-shadow: 0 10px 30px #59315a30;
+    flex-wrap: wrap;
+}
+
+.character {
+    font-size: 100px;
+    background: #ffe5f2;
+    border-radius: 20px;
+    padding: 25px;
+    flex: 1;
+}
+
+.message {
+    flex: 2;
+    min-width: 220px;
+    text-align: left;
+}
+
+.message p {
+    margin: 15px 0;
+}
+
+/* QUESTIONS */
+
+.question-card {
+    background: white;
+    padding: 35px;
+    max-width: 450px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px #e7b0cc;
+}
+
+.question-card img {
+    width: 150px;
+    margin: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+#question1, #question2 {
+    background: #fff0f7;
+}
+
+/* MYSTERY GIFTS */
+
+#gift {
+    background: #fff0f7;
+}
+
+.gift-container {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 35px;
+}
+
+.gift-box {
+    font-size: 65px;
+    background: #ffb4d3;
+    border-radius: 20px;
+    padding: 25px;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.gift-box:hover {
+    transform: translateY(-12px) rotate(8deg);
+}
+
+#gift-message {
+    font-size: 20px;
+    margin: 20px;
+    color: #d91c70;
+}
+
+/* GALLERY */
+
+#gallery {
+    background: #fff5fa;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+    max-width: 850px;
+    margin: 25px auto;
+}
+
+.gallery img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: 8px solid white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px #aaa;
+}
+
+/* CAKE */
+
+#cake {
+    background: #fff;
+}
+
+.cake {
+    font-size: 120px;
+    animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-15px); }
+}
+
+.confetti {
+    position: fixed;
+    top: -20px;
+    animation: fall 4s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+    }
+}
+
+@media(max-width:600px) {
+    .gallery {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .birthday-card {
+        flex-direction: column;
+    }
+
+    .message {
+        text-align: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO COUNTDOWN -->
+<section class="screen active" id="intro">
+    <h1 style="color:gold">A SPECIAL SURPRISE IS WAITING ❤️</h1>
+    <div class="clock">🕒</div>
+    <div id="countdown">00:00:5</div>
+    <p style="margin:20px">Happy special day!</p>
+</section>
+
+<!-- PASSWORD -->
+<section class="screen" id="password">
+    <div class="pin-box">
+        <h1>🔐 Enter Password</h1>
+        <p>Enter the password to unlock your surprise.</p>
+        <input type="password" id="pin" placeholder="Enter password">
+        <button onclick="unlock()">Unlock ❤️</button>
+        <p id="pin-error" style="color:red;margin-top:15px"></p>
+    </div>
+</section>
+
+<!-- BIRTHDAY MESSAGE -->
+<section class="screen" id="birthday">
+    <div class="birthday-card">
+        <div class="character">👧🏻🎀</div>
+        <div class="message">
+            <h1>Happy Birthday! 🎂</h1>
+            <p>To my Favorite mama ❤️</p>
+            <p>
+                Happy Birthday, Mom! Thank you for your endless love, support, and guidance every single day
+            </p>
+            <p>
+                You deserve all the wonderful things
+                in this world. Always keep smiling!
+            </p>
+            <h2>Happy Birthday! 💗</h2>
+            <button onclick="showScreen('question1')">Continue ❤️</button>
+        </div>
+    </div>
+</section>
+
+<!-- QUESTION 1 -->
+<section class="screen" id="question1">
+    <div class="question-card">
+        <h1>Are you really excited? 🥰</h1>
+        <div style="font-size:100px">🙈</div>
+        <div class="buttons">
+            <button onclick="showScreen('question2')">YES ❤️</button>
+            <button onclick="showScreen('question2')">YES!! 💕</button>
+        </div>
+    </div>
+</section>
+
+<!-- QUESTION 2 -->
+<section class="screen" id="question2">
+    <div class="question-card">
+        <h1>I have made something for you! 🎁</h1>
+        <div style="font-size:100px">🥳</div>
+        <p>Are you ready to see your surprise?</p>
+        <div class="buttons">
+            <button onclick="showScreen('gift')">YES! ❤️</button>
+            <button onclick="showScreen('gift')">OF COURSE!</button>
+        </div>
+    </div>
+</section>
+
+<!-- MYSTERY BOXES -->
+<section class="screen" id="gift">
+    <h1>Choose Your Mystery Box 💝</h1>
+    <p>Tap on the mystery box to unlock your gift!</p>
+
+    <div class="gift-container">
+        <div class="gift-box" onclick="openGift(1)">💝</div>
+        <div class="gift-box" onclick="openGift(2)">💝</div>
+        <div class="gift-box" onclick="openGift(3)">💝</div>
+    </div>
+
+    <div id="gift-message"></div>
+    <button onclick="showScreen('gallery')">See More ❤️</button>
+</section>
+
+<!-- PHOTO GALLERY -->
+<section class="screen" id="gallery">
+    <h1> Memories 📸</h1>
+    <p> Birthday Picture ❤️</p>
+
+    <div class="gallery">
+        <img src="photo 1.jpg" alt="Memory 1">
+        <img src="photo 2.jpg" alt="Memory 2">
+        <img src="photo3.jpg" alt="Memory 3">
+        <img src="photo4.jpg" alt="Memory 4">
+  
+    </div>
+
+    <button onclick="showScreen('final')">One Last Surprise 💗</button>
+</section>
+
+<!-- FINAL BIRTHDAY CAKE -->
+<section class="screen" id="final">
+    <h1>HAPPY BIRTHDAY! 🎉</h1>
+    <div class="cake">🎂</div>
+    <h2>Make a Wish! ✨</h2>
+    <p>May all your dreams come true!</p>
+    <br>
+    <button onclick="showScreen('cake')">Blow the Candles 🕯️</button>
+</section>
+
+<section class="screen" id="cake">
+    <h1>Your Wish is on Its Way! ❤️</h1>
+    <div class="cake">🎂</div>
+    <h2>Happy Birthday Once Again! 🥳</h2>
+    <p>You are special. Never forget that. 💕</p>
+    <button onclick="showScreen('birthday')">Replay Surprise 🔄</button>
+</section>
+
+<script>
+
+// CHANGE YOUR PASSWORD HERE
+const correctPassword = "1234";
+
+// SCREEN NAVIGATION
+function showScreen(id) {
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+
+    document.getElementById(id).classList.add("active");
+
+    if(id === "birthday" || id === "final") {
+        confetti();
+    }
+}
+
+// COUNTDOWN
+let seconds = 5;
+
+let timer = setInterval(() => {
+    seconds--;
+
+    document.getElementById("countdown").textContent =
+        "00:00:" + String(seconds).padStart(2,"0");
+
+    if(seconds <= 0) {
+        clearInterval(timer);
+        showScreen("password");
+    }
+},1000);
+
+// PASSWORD CHECK
+function unlock() {
+    let entered = document.getElementById("pin").value;
+
+    if(entered === correctPassword) {
+        showScreen("birthday");
+    } else {
+        document.getElementById("pin-error").textContent =
+            "Wrong password! Try again ❤️";
+    }
+}
+
+// MYSTERY GIFT
+function openGift(number) {
+    let messages = [
+        "🎁 Surprise! YOU are the best mom! ❤️",
+        "💖 You are one of the most special mom in my life!",
+        "🥰 My biggest wish is to see you happy every day!"
+    ];
+
+    document.getElementById("gift-message").textContent =
+        messages[number - 1];
+}
+
+// CONFETTI EFFECT
+function confetti() {
+    for(let i=0;i<45;i++) {
+        let piece = document.createElement("div");
+
+        piece.className = "confetti";
+        piece.textContent = ["💗","✨","🎉","💕"][
+            Math.floor(Math.random()*4)
+        ];
+
+        piece.style.left = Math.random()*100 + "vw";
+        piece.style.animationDelay = Math.random()*3 + "s";
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => piece.remove(),5000);
+    }
+}
+
+</script>
+
+</body>
+</html>
